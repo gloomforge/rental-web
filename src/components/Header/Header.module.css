@@ -1,0 +1,111 @@
+.header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  padding: 0 18%;
+}
+
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+  padding: 0 30px;
+  border-bottom: 1px solid darkgray;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000;
+  gap: 8px;
+}
+
+.header-navigation {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  height: 100%;
+}
+
+.navigation-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 32px;
+}
+
+.navigation-item {
+  position: relative;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.navigation-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 102%;
+  height: 2px;
+  background-color: gray;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navigation-item:hover::after {
+  transform: scaleX(1);
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+  padding: 0 20px;
+}
+
+.auth-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #555;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.basket-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: auto;
+  cursor: pointer;
+}
+
+.basket-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.basket-label {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  position: relative;
+  cursor: pointer;
+}
