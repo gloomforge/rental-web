@@ -1,0 +1,58 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 42px;
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.content {
+  padding-top: 20vh;
+  margin-top: 40px;
+  height: 100vh;
+}
+
+.section {
+  margin-top: 40px;
+  padding-left: 20px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+  color: #86868b;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 320px;
+  column-gap: 24px;
+  padding-right: 20px;
+}
+
+.listItem {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  padding: 10px 0;
+  margin: 0;
+  box-sizing: border-box;
+}

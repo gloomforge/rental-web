@@ -1,50 +1,77 @@
+import { memo, useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import cartIcon from '../../assets/image/card-icon.png';
+import burgerIcon from '../../assets/image/menu-32.png';
 import styles from './Header.module.css';
-import cardIcon from '../../assets/image/card-icon.png';
-import { useNavigate } from 'react-router';
+import MobileMenu from '../MobileMenu';
 
-const navItems = ['IPhone', 'IPad', 'AirPords', 'Watch', 'Mac', 'VisionPro'];
+const categories = ['IPhone', 'IPad', 'AirPods', 'Watch', 'Mac', 'Vision Pro'];
 
-export default function Header() {
+function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setIsMenuOpen(location.hash === '#menu');
+  }, [location.hash]);
+
+  const handleCloseMenu = () => {
+    navigate(location.pathname);
+    setIsMenuOpen(false);
+  };
+
+  const navList = useMemo(
+    () =>
+      categories.map((item) => (
+        <li key={item} className={styles.navItem}>
+          {item}
+        </li>
+      )),
+    []
+  );
+
   return (
-    <header className={`${styles['header']}`}>
-      <div className={styles['header-container']}>
-        <div className={styles['header-logo']}>
-          <h1>appshop</h1>
-        </div>
+    <>
+      <header className={styles.header}>
+        <div className={styles.container}>
+          <div className={styles.menuTrigger}>
+            <a href={'#menu'}>
+              <img src={`${burgerIcon}`} alt="Открыть меню" />
+            </a>
+          </div>
 
-        <nav className={styles['header-navigation']}>
-          <ul className={styles['navigation-list']}>
-            {navItems.map((item) => (
-              <li key={item} className={styles['navigation-item']}>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <div className={styles.logo}>
+            <h1>appshop</h1>
+          </div>
 
-        <div className={styles['auth-section']}>
-          <button
-            className={styles['auth-button']}
-            onClick={() => {
-              navigate('/login');
-            }}
-          >
-            Войти
-          </button>
-          {/* user profile */}
-        </div>
+          <nav className={styles.nav}>
+            <ul className={styles.navList}>{navList}</ul>
+          </nav>
 
-        <div className={styles['basket-button']}>
-          <img
-            className={styles['basket-icon']}
-            src={cardIcon}
-            alt={'корзина'}
-          />
-          <label className={styles['basket-label']}>Корзина</label>
+          <div className={styles.auth}>
+            <button
+              className={styles.authBtn}
+              onClick={() => navigate('/login')}
+            >
+              Войти
+            </button>
+          </div>
+
+          <div className={styles.cart}>
+            <img
+              src={`${cartIcon}`}
+              alt="Корзина"
+              className={styles.cartIcon}
+            />
+            <span className={styles.cartLabel}>Корзина</span>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {isMenuOpen && <MobileMenu onClose={handleCloseMenu} />}
+    </>
   );
 }
+
+export default memo(Header);
