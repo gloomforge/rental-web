@@ -2,6 +2,21 @@
   "name": "rent-web",
   "version": "0.1.0",
   "private": true,
+  "description": "Frontend for rental platform - build with React",
+  "author": "gloomforge",
+  "license": "MIT",
+  "homepage": "https://github.com/gloomforge/rental-web",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/gloomforge/rental-web.git"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "format": "prettier --write \"src/**/*.{js,jsx,json,css,md,yml}\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -15,13 +30,6 @@
   },
   "devDependencies": {
     "prettier": "^3.5.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "format": "prettier --write \"src/**/*.{js,jsx,json,css,md,yml}\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
