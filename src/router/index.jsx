@@ -1,19 +1,21 @@
+import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import HomePage from '../pages/Home';
-import LoginPage from '../pages/Login';
-import RegisterPage from '../pages/Register';
-import { ROUTES } from '../config';
 import Header from '../components/Header';
+import Loader from '../components/Loader';
+import { ROUTES } from '../config';
+import { HomePage, LoginPage, RegisterPage } from './lazyPages';
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-        <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
