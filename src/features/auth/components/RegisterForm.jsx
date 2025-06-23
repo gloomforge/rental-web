@@ -11,18 +11,22 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await register(username, email, password);
     } catch (error) {}
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['form']}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles['form-group']}>
-        <label className={styles.label}>Имя</label>
+        <label htmlFor="username" className={styles.label}>
+          Имя
+        </label>
         <input
+          id="username"
+          name="username"
           type="text"
+          autoComplete="name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Иван"
@@ -32,9 +36,14 @@ export default function RegisterForm() {
       </div>
 
       <div className={styles['form-group']}>
-        <label className={styles.label}>Почта</label>
+        <label htmlFor="email" className={styles.label}>
+          Почта
+        </label>
         <input
+          id="email"
+          name="email"
           type="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="ivan@example.com"
@@ -44,9 +53,14 @@ export default function RegisterForm() {
       </div>
 
       <div className={styles['form-group']}>
-        <label className={styles.label}>Пароль</label>
+        <label htmlFor="password" className={styles.label}>
+          Пароль
+        </label>
         <input
+          id="password"
+          name="password"
           type="password"
+          autoComplete="new-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••"

@@ -2,26 +2,29 @@ import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import styles from './AuthForm.module.css';
 
-export default function RegisterForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await login(email, password);
     } catch (error) {}
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles['form']}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles['form-group']}>
-        <label className={styles.label}>Почта</label>
+        <label htmlFor="login-email" className={styles.label}>
+          Почта
+        </label>
         <input
+          id="login-email"
+          name="email"
           type="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="ivan@example.com"
@@ -31,9 +34,14 @@ export default function RegisterForm() {
       </div>
 
       <div className={styles['form-group']}>
-        <label className={styles.label}>Пароль</label>
+        <label htmlFor="login-password" className={styles.label}>
+          Пароль
+        </label>
         <input
+          id="login-password"
+          name="password"
           type="password"
+          autoComplete="new-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••"
