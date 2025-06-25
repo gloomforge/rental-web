@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loader from '../components/Loader';
 import { ROUTES } from '../config';
 import { HomePage, LoginPage, RegisterPage, ShopPage } from './lazyPages';
+import { ProductPage } from '../pages/Products';
 
 export default function AppRouter() {
   return (
@@ -15,6 +16,7 @@ export default function AppRouter() {
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           <Route path={ROUTES.SHOP} element={<ShopPage />} />
+          <Route path={ROUTES.PRODUCT_ROUTE} element={<ProductPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
