@@ -6,6 +6,7 @@ export async function loginUser(email, password) {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   });
 
@@ -23,12 +24,27 @@ export async function registerUser(fullName, email, password) {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ fullName, email, password }),
   });
 
   if (!response.ok) {
     const error = await response.json();
     throw new Error(error.message || 'Ошибка регистрации');
+  }
+
+  return response.json();
+}
+
+export async function getCurrentUser() {
+  const response = await fetch(`${API_BASE}/auth/me`, {
+    method: 'GET',
+    credentials: true,
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Не удалось получить данные пользователя');
   }
 
   return response.json();

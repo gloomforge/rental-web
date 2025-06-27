@@ -7,3 +7,4 @@ export const RegForm = memo(RegisterForm);
 
 export * from './services/authApi';
 export * from './hooks/useAuth';
+export * from './guard/GuestRoute';
