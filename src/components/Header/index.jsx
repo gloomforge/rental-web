@@ -4,13 +4,15 @@ import cartIcon from '../../assets/image/card-icon.png';
 import burgerIcon from '../../assets/image/menu-32.png';
 import styles from './Header.module.css';
 import MobileMenu from '../MobileMenu';
-
-const categories = ['IPhone', 'IPad', 'AirPods', 'Watch', 'Mac', 'Vision Pro'];
+import { useCategories } from '../../features/category';
+import Profile from '../../components/Profile';
+import { AuthProvider } from '../../features/auth';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { categories, loading } = useCategories();
 
   useEffect(() => {
     setIsMenuOpen(location.hash === '#menu');
@@ -23,12 +25,12 @@ function Header() {
 
   const navList = useMemo(
     () =>
-      categories.map((item) => (
-        <li key={item} className={styles.navItem}>
-          {item}
+      (loading ? [] : categories).map((cat) => (
+        <li key={cat.id} className={styles.navItem}>
+          {cat.name}
         </li>
       )),
-    []
+    [categories, loading]
   );
 
   return (
@@ -50,12 +52,9 @@ function Header() {
           </nav>
 
           <div className={styles.auth}>
-            <button
-              className={styles.authBtn}
-              onClick={() => navigate('/login')}
-            >
-              Войти
-            </button>
+            <AuthProvider>
+              <Profile />
+            </AuthProvider>
           </div>
 
           <div className={styles.cart}>
