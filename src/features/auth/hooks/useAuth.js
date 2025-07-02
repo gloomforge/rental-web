@@ -3,23 +3,12 @@ import {
   loginUser,
   registerUser,
   getCurrentUser,
+  logoutUser,
 } from '../services/authApi';
 
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const login = useCallback(async (email, password) => {
-    const data = await loginUser(email, password);
-    setUser(data);
-    return data;
-  }, []);
-
-  const register = useCallback(async (fullName, email, password) => {
-    const data = await registerUser(fullName, email, password);
-    setUser(data);
-    return data;
-  }, []);
 
   const fetchUser = useCallback(async () => {
     try {
@@ -32,9 +21,24 @@ export function useAuth() {
     }
   }, []);
 
+  const login = useCallback(async (email, password) => {
+    await loginUser(email, password);
+    await fetchUser();
+  }, [fetchUser]);
+
+  const register = useCallback(async (fullName, email, password) => {
+    await registerUser(fullName, email, password);
+    await fetchUser();
+  }, [fetchUser]);
+
+  const logout = useCallback(async () => {
+    await logoutUser();
+    await fetchUser();
+  }, [fetchUser]);
+
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
 
-  return { user, login, register, fetchUser, loading };
+  return { user, login, register, logout, fetchUser, loading };
 }

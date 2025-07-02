@@ -25,7 +25,7 @@ export async function registerUser(fullName, email, password) {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ fullName, email, password }),
+    body: JSON.stringify({ name: fullName, email, password }),
   });
 
   if (!response.ok) {
@@ -39,7 +39,6 @@ export async function registerUser(fullName, email, password) {
 export async function getCurrentUser() {
   const response = await fetch(`${API_BASE}/auth/me`, {
     method: 'GET',
-    credentials: true,
     credentials: 'include',
   });
 
@@ -47,5 +46,16 @@ export async function getCurrentUser() {
     throw new Error('Не удалось получить данные пользователя');
   }
 
+  return response.json();
+}
+
+export async function logoutUser() {
+  const response = await fetch(`${API_BASE}/auth/logout`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+  if (!response.ok) {
+    throw new Error('Ошибка выхода из аккаунта');
+  }
   return response.json();
 }
