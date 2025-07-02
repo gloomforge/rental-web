@@ -1,6 +1,6 @@
 import styles from '../../styles/HomePage.module.css';
 import iphone from '../../assets/image/iphone-image.png';
-import Category from '../../components/Category';
+import Category from '../../features/category';
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import Notification from '../../components/Notification';

@@ -7,7 +7,6 @@ import {
   HomePage,
   LoginPage,
   RegisterPage,
-  ProfilePage,
   ShopPage,
 } from './lazyPages';
 import { ProductPage } from '../pages/Products';
@@ -36,7 +35,6 @@ export default function AppRouter() {
               </GuestRoute>
             }
           />
-          <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
           <Route path={ROUTES.SHOP} element={<ShopPage />} />
           <Route path={ROUTES.PRODUCT_ROUTE} element={<ProductPage />} />
         </Routes>
