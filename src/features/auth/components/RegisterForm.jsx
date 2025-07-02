@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router';
 import styles from './AuthForm.module.css';
@@ -10,22 +10,38 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [notification, setNotification] = useState(null);
 
-  const { register } = useAuth();
+  const { register, user } = useAuth();
   const navigate = useNavigate();
+  const notificationRef = useRef(null);
+
+  useEffect(() => {
+    if (user && notification?.success) {
+      notificationRef.current = true;
+    }
+  }, [user, notification]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await register(username, email, password);
+      await register(username, email, password);
       setNotification({
         title: 'Успешная регистрация',
-        description: `Вы успешкно вошли в систему как, ${response.account.fullName}`,
+        description: `Вы успешно вошли в систему как, ${username}`,
+        success: true,
       });
     } catch (error) {
       setNotification({
         title: 'Ошибка регистрация',
         description: error.message || `Что-то полшло не так`,
       });
+    }
+  };
+
+  const handleNotificationClose = () => {
+    setNotification(null);
+    if (notification?.success && notificationRef.current) {
+      navigate('/');
+      notificationRef.current = false;
     }
   };
 
@@ -93,10 +109,7 @@ export default function RegisterForm() {
         <Notification
           title={notification.title}
           description={notification.description}
-          onClose={() => {
-            setNotification(null);
-            if (notification.success) navigate('/');
-          }}
+          onClose={handleNotificationClose}
         />
       )}
     </>
