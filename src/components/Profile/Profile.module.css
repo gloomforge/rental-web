@@ -1,0 +1,41 @@
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.profileName {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profileBtnGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.profileBtn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.profileBtn:hover {
+  background: #f3f4f6;
+} 
