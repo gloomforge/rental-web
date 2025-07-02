@@ -6,7 +6,6 @@ import styles from './Header.module.css';
 import MobileMenu from '../MobileMenu';
 import { useCategories } from '../../features/category';
 import Profile from '../../components/Profile';
-import { AuthProvider } from '../../features/auth';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,9 +51,7 @@ function Header() {
           </nav>
 
           <div className={styles.auth}>
-            <AuthProvider>
-              <Profile />
-            </AuthProvider>
+            <Profile />
           </div>
 
           <div className={styles.cart}>
