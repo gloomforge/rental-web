@@ -8,7 +8,6 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, user } = useAuth();
-  const [error, setError] = useState('');
   const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
   const notificationRef = useRef(null);
@@ -21,7 +20,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+
     try {
       await login(email, password);
       setNotification({

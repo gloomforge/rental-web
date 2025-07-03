@@ -1,6 +1,6 @@
 import styles from '../../styles/HomePage.module.css';
 import iphone from '../../assets/image/iphone-image.png';
-import Category from '../../features/category';
+import { CategoryList } from '../../features/category';
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import Notification from '../../components/Notification';
@@ -39,7 +39,7 @@ const HomePage = () => {
           <img src={iphone} alt="iPhone" className={styles.heroImage} />
         </div>
       </section>
-      <Category />
+      <CategoryList />
     </div>
   );
 };

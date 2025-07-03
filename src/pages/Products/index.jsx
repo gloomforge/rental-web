@@ -1,15 +1,13 @@
 import { useParams } from 'react-router';
+import { ProductList } from '../../features/product';
+import styles from '../../styles/HomePage.module.css'
 
 export function ProductPage() {
   const { productId } = useParams();
-
-  // Here you could fetch product data based on productId
-  // const product = useProduct(productId);
-
-  return (
-    <div>
-      <h2>Product: {productId}</h2>
-      {/* Render product details here */}
+  
+  return ( 
+    <div className={styles.wrapper}>
+      <ProductList categoryId={productId} />
     </div>
-  );
+  )
 }
