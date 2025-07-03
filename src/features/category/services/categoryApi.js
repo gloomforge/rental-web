@@ -5,10 +5,25 @@ export async function fetchCategories() {
     method: 'GET',
     credentials: 'include',
   });
+
   if (!response.ok) {
     throw new Error('Не удалось получить список категорий');
   }
+  
   return response.json();
+}
+
+export async function fetchCategoryById(id) {
+    const response = await fetch(`${API_BASE}/categories/${id}`, {
+        method: 'GET',
+        credentials: 'include',
+    });
+
+    if (!response.ok) {
+        throw new Error('Не удалось получить категорию по id')
+    }
+
+    return await response.json();
 }
 
 export function getCategoryImageUrl(imagePath) {
