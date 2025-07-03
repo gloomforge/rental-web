@@ -7,7 +7,7 @@ import {
   HomePage,
   LoginPage,
   RegisterPage,
-  ShopPage,
+  NotFoundPage
 } from './lazyPages';
 import { ProductPage } from '../pages/Products';
 import { GuestRoute } from '../features/auth';
@@ -35,8 +35,8 @@ export default function AppRouter() {
               </GuestRoute>
             }
           />
-          <Route path={ROUTES.SHOP} element={<ShopPage />} />
           <Route path={ROUTES.PRODUCT_ROUTE} element={<ProductPage />} />
+          <Route path={ROUTES.OTHER} element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

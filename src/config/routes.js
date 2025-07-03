@@ -3,7 +3,8 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   PROFILE: '/auth/profile',
-  SHOP: '/shop',
+  // SHOP: '/shop',
   PRODUCT: (id) => `/products/${id}`,
-  PRODUCT_ROUTE: '/products/:productId'
+  PRODUCT_ROUTE: '/products/:productId',
+  OTHER: '/*'
 };
