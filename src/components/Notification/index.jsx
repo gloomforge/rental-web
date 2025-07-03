@@ -2,7 +2,7 @@ import { memo, useState, useEffect } from 'react';
 import styles from './Notification.module.css';
 import checkIcon from '../../assets/image/info-32.png';
 
-function Notification({ title, description, duration = 6000, onClose }) {
+function Notification({ title, description, duration = 4000, onClose }) {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
