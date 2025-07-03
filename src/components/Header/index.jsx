@@ -1,11 +1,12 @@
 import { memo, useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import cartIcon from '../../assets/image/card-icon.png';
 import burgerIcon from '../../assets/image/menu-32.png';
 import styles from './Header.module.css';
 import MobileMenu from '../MobileMenu';
 import { useCategories } from '../../features/category';
 import Profile from '../../components/Profile';
+import { ROUTES } from '../../config/routes';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,11 +26,11 @@ function Header() {
   const navList = useMemo(
     () =>
       (loading ? [] : categories).map((cat) => (
-        <li key={cat.id} className={styles.navItem}>
+        <li key={cat.id} className={styles.navItem} onClick={() => navigate(ROUTES.PRODUCT(cat.id))} style={{cursor: 'pointer'}}>
           {cat.name}
         </li>
       )),
-    [categories, loading]
+    [categories, loading, navigate]
   );
 
   return (
@@ -43,7 +44,7 @@ function Header() {
           </div>
 
           <div className={styles.logo}>
-            <h1>appshop</h1>
+            <Link to={'/'}>appshop</Link>
           </div>
 
           <nav className={styles.nav}>
@@ -54,7 +55,7 @@ function Header() {
             <Profile />
           </div>
 
-          <div className={styles.cart}>
+          <div className={styles.cart} style={{cursor: 'pointer'}}>
             <img
               src={`${cartIcon}`}
               alt="Корзина"
